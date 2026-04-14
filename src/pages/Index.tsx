@@ -1,5 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 
+function QRCode() {
+  const url = typeof window !== "undefined" ? window.location.href : "https://poehali.dev";
+  const qrSrc = `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(url)}&chco=00c8ff&chf=bg,s,070d1a`;
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div className="relative p-3 rounded-2xl" style={{ background: "var(--card-bg)", border: "1px solid rgba(0,200,255,0.3)", boxShadow: "0 0 30px rgba(0,200,255,0.15), inset 0 0 20px rgba(0,200,255,0.05)" }}>
+        <img src={qrSrc} alt="QR-код сайта" width={160} height={160} className="rounded-xl block" style={{ imageRendering: "pixelated" }} />
+        <div className="absolute -top-px -left-px w-5 h-5 border-t-2 border-l-2 rounded-tl-2xl" style={{ borderColor: "#00c8ff" }} />
+        <div className="absolute -top-px -right-px w-5 h-5 border-t-2 border-r-2 rounded-tr-2xl" style={{ borderColor: "#00c8ff" }} />
+        <div className="absolute -bottom-px -left-px w-5 h-5 border-b-2 border-l-2 rounded-bl-2xl" style={{ borderColor: "#00c8ff" }} />
+        <div className="absolute -bottom-px -right-px w-5 h-5 border-b-2 border-r-2 rounded-br-2xl" style={{ borderColor: "#00c8ff" }} />
+      </div>
+      <p className="text-xs text-center" style={{ color: "rgba(180,210,230,0.5)" }}>Открыть сайт<br />на другом устройстве</p>
+    </div>
+  );
+}
+
 const HERO_IMAGE = "https://cdn.poehali.dev/projects/0867fbb5-6410-406d-9503-bdbaea829312/files/47f0d23c-e18b-4265-a2af-4db812b93ce2.jpg";
 
 function useReveal() {
@@ -446,16 +464,15 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-12 px-6" style={{ background: "rgba(0,0,0,0.4)", borderTop: "1px solid rgba(0,200,255,0.1)" }}>
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <footer className="py-16 px-6" style={{ background: "rgba(0,0,0,0.4)", borderTop: "1px solid rgba(0,200,255,0.1)" }}>
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
           <div>
             <div className="font-display text-lg font-bold text-white mb-1 tracking-wide">Калиненков Кирилл</div>
-            <div className="text-sm" style={{ color: "rgba(180,210,230,0.5)" }}>10.1 класс · г. Челябинск · 2026</div>
-          </div>
-          <div className="text-center">
+            <div className="text-sm mb-4" style={{ color: "rgba(180,210,230,0.5)" }}>10.1 класс · г. Челябинск · 2026</div>
             <div className="neon-text font-display text-sm tracking-widest uppercase mb-1">Исследовательский проект</div>
             <div className="text-xs" style={{ color: "rgba(180,210,230,0.4)" }}>Влияние компьютерных игр на жизнь человека</div>
           </div>
+          <QRCode />
           <div className="text-xs text-center" style={{ color: "rgba(180,210,230,0.35)" }}>
             Школьный проект<br />2025–2026 учебный год
           </div>
